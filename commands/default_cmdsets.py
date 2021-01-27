@@ -37,12 +37,15 @@ class CharacterCmdSet(default_cmds.CharacterCmdSet):
         #
         # any commands you add below will overload the default ones.
         #
-        # These commands from silence, override the defaults and increase 
-        # their permision levels so players cannot use them.
-        self.add(commands.silence.CmdSay())
-        self.add(commands.silence.CmdWhisper())
-        self.add(commands.silence.CmdPose())
-        self.add(commands.silence.CmdSetDesc())
+        # Remove the built-in commands that allow free text and local
+        # communication.
+        self.remove(default_cmds.CmdSay)
+        self.remove(default_cmds.CmdWhisper)
+        self.remove(default_cmds.CmdPose)
+        self.remove(default_cmds.CmdSetDesc)
+
+        # possibly I will also need to remove the channel commands. Lets see.
+        
 
 
 

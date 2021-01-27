@@ -7,6 +7,10 @@ players.
 
 # Todo list
 
+## unit tests
+
+* test for silence conditions I guess.
+
 ## Silence Project
 
 Remove player communication

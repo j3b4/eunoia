@@ -42,3 +42,22 @@ try:
     from server.conf.secret_settings import *
 except ImportError:
     print("secret_settings.py file not found or failed to import.")
+
+
+######################################################################
+# Default Channels for players
+######################################################################
+# These are additional channels to offer. Usually, at least 'public'
+# should exist. The superuser will automatically be subscribed to all channels
+# in this list. New entries will be created on the next reload. But
+# removing or updating a same-key channel from this list will NOT automatically
+# change/remove it in the game, that needs to be done manually.
+DEFAULT_CHANNELS = [
+    # helpme 
+    {
+        "key": "HelpMe",
+        "aliases": ("hm"),
+        "desc": "To ask for help from Helpers or Admins",
+        "locks": "control:perm(Admin);listen:perm(Helper);send:all()",
+    }
+]

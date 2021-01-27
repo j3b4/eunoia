@@ -13,6 +13,7 @@ of intimacy.
 * say
 * whisper
 * pose
+* set desc
 
 ## Method
 
