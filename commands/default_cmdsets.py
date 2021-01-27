@@ -15,6 +15,9 @@ own cmdsets by inheriting from them or directly from `evennia.CmdSet`.
 """
 
 from evennia import default_cmds
+import commands.silence
+
+# from evennia import commands.default.general
 
 
 class CharacterCmdSet(default_cmds.CharacterCmdSet):
@@ -34,6 +37,13 @@ class CharacterCmdSet(default_cmds.CharacterCmdSet):
         #
         # any commands you add below will overload the default ones.
         #
+        # These commands from silence, override the defaults and increase 
+        # their permision levels so players cannot use them.
+        self.add(commands.silence.CmdSay())
+        self.add(commands.silence.CmdWhisper())
+        self.add(commands.silence.CmdPose())
+        self.add(commands.silence.CmdSetDesc())
+
 
 
 class AccountCmdSet(default_cmds.AccountCmdSet):
