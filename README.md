@@ -21,3 +21,8 @@ Remove player communication
 
 Still need to remove the Comms type commands and limit them to admin
 broadcast and maybe a help channel.
+
+## Bare commands
+
+Might be better to drastically reduce the default commandset. Look in 
+settings or someplace to simply refer to an alternative default.
