@@ -15,9 +15,6 @@ own cmdsets by inheriting from them or directly from `evennia.CmdSet`.
 """
 
 from evennia import default_cmds
-import commands.silence
-
-# from evennia import commands.default.general
 
 
 class CharacterCmdSet(default_cmds.CharacterCmdSet):
@@ -37,16 +34,6 @@ class CharacterCmdSet(default_cmds.CharacterCmdSet):
         #
         # any commands you add below will overload the default ones.
         #
-        # Remove the built-in commands that allow free text and local
-        # communication.
-        self.remove(default_cmds.CmdSay)
-        self.remove(default_cmds.CmdWhisper)
-        self.remove(default_cmds.CmdPose)
-        self.remove(default_cmds.CmdSetDesc)
-
-        # possibly I will also need to remove the channel commands. Lets see.
-        
-
 
 
 class AccountCmdSet(default_cmds.AccountCmdSet):
