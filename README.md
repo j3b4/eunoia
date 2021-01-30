@@ -4,6 +4,8 @@ Players race against the clock to find mates before they die. They compete with
 eachother and with annoying "itchbots" for the attention and affection of other
 players.
 
+# Play pre-alpha now:
+http://faod.j3b.org
 
 # ToDo
 
