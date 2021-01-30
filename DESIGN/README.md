@@ -103,3 +103,5 @@ Maybe "orbit <reference point>".  This allows a body to stay close to a body the
 Then this will lead naturally to an amusing problem, what if a body you like likes a body you don't like. You orbit liked body but you try to escape
 disliked body.  This naturally suggests conflict, either internal where you make a tough choice to stay with liked body and put up with disliked. Or 
 and external conflict where you try to induce disliked to leave, or encourage liked to come away with you. 
+
+And of course there's the even simpler problem of unrequited attraction where you like a body who dislikes you.  This implies a contest to be resolved.
