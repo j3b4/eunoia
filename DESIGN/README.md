@@ -89,3 +89,19 @@ But it is a design goal to make it playable and fun with low participation
 rates. I think there are ways. For example build for asynchronous intimacy.
 Find ways for players to interact by leaving signals and messages for each other
 
+# Movement location and orientation
+In a game of purely relative movement one can only choose to move toward or away from another reference point.
+To start with the game has a single reference point called "home", "creche", "spawn" or something like that. 
+The second reference point is other bodies.  Beyond that I have no distinct plans yet. 
+
+Movement commands might be "approach <reference point>" or "quit <reference point>". (Maybe depart, avoid... hmmm).
+
+Another useful command might be one that allows you to maintain your proximity to a reference point even if it moves. 
+Maybe "orbit <reference point>".  This allows a body to stay close to a body they like. However there may be bodies 
+  one doesn't like. So there might be another command say "escape <reference point>". 
+  
+Then this will lead naturally to an amusing problem, what if a body you like likes a body you don't like. You orbit liked body but you try to escape
+disliked body.  This naturally suggests conflict, either internal where you make a tough choice to stay with liked body and put up with disliked. Or 
+and external conflict where you try to induce disliked to leave, or encourage liked to come away with you. 
+
+And of course there's the even simpler problem of unrequited attraction where you like a body who dislikes you.  This implies a contest to be resolved.
