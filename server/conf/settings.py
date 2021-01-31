@@ -80,7 +80,7 @@ except ImportError:
 #      character (disconnects multiplets)
 #  3 - like mode 2, except multiple sessions can puppet one character, each
 #      session getting the same data.
-MULTISESSION_MODE = 0
+MULTISESSION_MODE = 1
 # The maximum number of characters allowed by the default ooc char-creation command
 MAX_NR_CHARACTERS = 1
 

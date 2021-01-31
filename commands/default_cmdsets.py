@@ -1,3 +1,4 @@
+# commands/default_cmdset.py
 """
 Command sets
 
@@ -13,8 +14,10 @@ to add/remove commands from the default lineup. You can create your
 own cmdsets by inheriting from them or directly from `evennia.CmdSet`.
 
 """
-
+from evennia import CmdSet
 from evennia import default_cmds
+from commands.body import CmdIB, CmdPing
+
 
 
 class CharacterCmdSet(default_cmds.CharacterCmdSet):
@@ -34,6 +37,7 @@ class CharacterCmdSet(default_cmds.CharacterCmdSet):
         #
         # any commands you add below will overload the default ones.
         #
+        self.add(CmdIB())
 
 
 class AccountCmdSet(default_cmds.AccountCmdSet):
@@ -93,4 +97,5 @@ class SessionCmdSet(default_cmds.SessionCmdSet):
         super().at_cmdset_creation()
         #
         # any commands you add below will overload the default ones.
-        #
+        # 
+
