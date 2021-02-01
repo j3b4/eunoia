@@ -40,4 +40,8 @@ shy, nice, soft, cool, sly
 * does this change the indifference mechanic? Sort of. It is not clear if you
 dislike the opposites of things you like. 
 
+If so, then you really have 5 likes and 5 dislikes. But still only 100 BL types
+exist in the world. That's probably fine.
 
+It also means that each body has 5 apparent traits even though only 3 need to 
+be selected. So I've invented a 5-bit set of personalities. "Brilliant."
