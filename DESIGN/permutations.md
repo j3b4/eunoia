@@ -32,12 +32,11 @@ variation:
 Consider if each trait is onepart of a binary. Any trait not expressed IS it's
 opposite. This lets me have 10 traits for the price of 5.
 Example traits:
-`  warm, smooth, round, harsh, dry
-`  cool, rough, flat, mild, wet
 
+```
 bold, mean, tough, hot, honest
 shy, nice, soft, cool, sly
-
+```
 * does this change the indifference mechanic? Sort of. It is not clear if you
 dislike the opposites of things you like. 
 
