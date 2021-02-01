@@ -16,7 +16,7 @@ own cmdsets by inheriting from them or directly from `evennia.CmdSet`.
 """
 from evennia import CmdSet
 from evennia import default_cmds
-from commands.body import CmdIB, CmdPing
+from commands.command import CmdIB
 
 
 
@@ -37,7 +37,6 @@ class CharacterCmdSet(default_cmds.CharacterCmdSet):
         #
         # any commands you add below will overload the default ones.
         #
-        self.add(CmdIB())
 
 
 class AccountCmdSet(default_cmds.AccountCmdSet):
@@ -58,6 +57,7 @@ class AccountCmdSet(default_cmds.AccountCmdSet):
         #
         # any commands you add below will overload the default ones.
         #
+        self.add(CmdIB())
 
 
 class UnloggedinCmdSet(default_cmds.UnloggedinCmdSet):

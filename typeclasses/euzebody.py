@@ -15,6 +15,7 @@ inheritance.
 from typeclasses.characters import Character
 from commands.body_cmdsets import CmdSetBody
 
+
 class Body(Character):
     """
     The body is the type of object that populates the Euze.
@@ -26,15 +27,13 @@ class Body(Character):
         """
         super().basetype_setup()
         self.locks.add(
-                ";".join(["get:false()", "call:false()"]) 
+                ";".join(["get:false()", "call:false()"])
         )
         self.cmdset.add_default(CmdSetBody, permanent=True)
 
     def at_after_move(self, source_location, **kwargs):
         """
-        No looking around after move. 
+        No looking around after move.
         Just overloading this for now.
         """
         pass
-
-
