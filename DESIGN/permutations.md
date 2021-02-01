@@ -32,8 +32,8 @@ variation:
 Consider if each trait is onepart of a binary. Any trait not expressed IS it's
 opposite. This lets me have 10 traits for the price of 5.
 Example traits:
-warm, smooth, round, harsh, dry
-cool, rough, flat, mild, wet
+`  warm, smooth, round, harsh, dry
+`  cool, rough, flat, mild, wet
 
 bold, mean, tough, hot, honest
 shy, nice, soft, cool, sly
