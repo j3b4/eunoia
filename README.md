@@ -5,7 +5,7 @@ eachother and with annoying "itchbots" for the attention and affection of other
 players.
 
 # Play pre-alpha now:
-http://faod.j3b.org
+http://faod.j3b.org (This is actually a terrible idea, but be my guest)
 
 # ToDo
 
