@@ -45,3 +45,10 @@ exist in the world. That's probably fine.
 
 It also means that each body has 5 apparent traits even though only 3 need to 
 be selected. So I've invented a 5-bit set of personalities. "Brilliant."
+
+* No wait. My calculator https://www.mathsisfun.com/combinatorics/combinations-permutations-calculator.html
+says that this yields 32 species instead of ...ahh right no I got it.
+Hmm. Okay lets try this: only 3 trait pairs will give us 8 species and 64 BL.
+
+* So consider a myers-brigs dating site. 4 binary choices give 16 types and 
+256 type/like combinations.  That sounds manageable. Though 5 -> 32 -1024 is okay too.
