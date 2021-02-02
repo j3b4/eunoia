@@ -15,11 +15,13 @@ inheritance.
 from typeclasses.characters import Character
 from commands.body_cmdsets import CmdSetBody
 
+TRAITS = [("warm", "cool"), ("nice", "mean"), ("soft", "hard")]
+# TRAITS as a list of tuples should allow me to access values a
+# eg: TRAITS[2][1] is "hard", TRAITS[1][0] is "nice".
+
 
 class Body(Character):
-    """
-    The body is the type of object that populates the Euze.
-
+    """ The body is the type of object that populates the Euze.
     """
     def basetype_setup(self):
         """
@@ -30,6 +32,19 @@ class Body(Character):
                 ";".join(["get:false()", "call:false()"])
         )
         self.cmdset.add_default(CmdSetBody, permanent=True)
+
+    def at_object_creation(self):
+        """
+        Create the traits and preferences.j
+        """
+        import random
+        b = []  # body type
+        a = []  # attraction type
+        for x in TRAITS:
+            a.append(random.choice(x))
+            b.append(random.choice(x))
+        self.db.bodytype = b
+        self.db.attraction = a
 
     def at_after_move(self, source_location, **kwargs):
         """

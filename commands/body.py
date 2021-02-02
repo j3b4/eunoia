@@ -6,7 +6,7 @@ Commands for Eunoia bodies.
 from evennia import Command
 class CmdPing(Command):
     """
-    seek information about surrounding objects that are nearby*
+    Seek information about surrounding objects that are nearby*
 
     Usage:
       ping
@@ -14,10 +14,10 @@ class CmdPing(Command):
 
     Without arguments it returns a list of all other nearby objects.
 
-    With argument it returns basic information about the target other body. Pinging
-    also gives up information about the body pinging, it reveals location, the fact
-    that the body is pinging, and potentially other details to all bodies within
-    range.
+    With argument it returns basic information about the target other body.
+    Pinging also gives up information about the body pinging, it reveals
+    location, the fact that the body is pinging, and potentially other details
+    to all bodies within range.
     """
     key = "ping"
     # locks = "cmd:all()" 
@@ -47,5 +47,4 @@ class CmdPing(Command):
             location.msg_contents(lmessage)
             caller.msg(message)
             target.msg(tmessage)
-
 
