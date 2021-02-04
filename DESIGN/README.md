@@ -1,107 +1,39 @@
-# Design strategy Basically start with an Evennia "talker" style mud. Implement
-the minimum functions necessary to allow players to interact with each other and
-try to achieve intimacy or eunoia.
+# Eunoia Readme
 
-# Control Communication
+A game about looking for love in all the wrong places until you die.
 
-## Disable default commands that allow free form communication.
+<!--pyndex_start-->
+  [Attributes](notes.md#Attributes)  
+  [Bodies](bodies.md#Bodies)  
+  [Body Traits](bodies.md#Body_Traits)  
+  [Command to display these features](bodies.md#Command_to_display_these_features)  
+  [Compatibility](notes.md#Compatibility)  
+  [Control Communication](notes.md#Control_Communication)  
+  [Design ideas](position.md#Design_ideas)  
+  [Design strategy](notes.md#Design_strategy)  
+  [Determine the obstacles](notes.md#Determine_the_obstacles)  
+  [Distribution and testing](notes.md#Distribution_and_testing)  
+  [Enter the Euze](euze.md#Enter_the_Euze)  
+  [Euzebody](euze.md#Euzebody)  
+  [Fluid dynamics](position.md#Fluid_dynamics)  
+  [Give the game some objectives](notes.md#Give_the_game_some_objectives)  
+  [Idea: Intimacy is a limited resource.](notes.md#Idea:_Intimacy_is_a_limited_resource.)  
+  [Itch bots](notes.md#Itch_bots)  
+  [List of commands to silence:](silence.md#List_of_commands_to_silence:)  
+  [Matchmaking, fitness and Eunoia.](notes.md#Matchmaking,_fitness_and_Eunoia.)  
+  [Movement location and orientation](notes.md#Movement_location_and_orientation)  
+  [On Create body:](bodies.md#On_Create_body:)  
+  [permutaions.md](permutations.md#permutaions.md)  
+  [Ping](ping.md#Ping)  
+  [Position and communication](position.md#Position_and_communication)  
+  [Position and Eunoia](position.md#Position_and_Eunoia)  
+  [Positioning](position.md#Positioning)  
+  [Relative movement commands.](position.md#Relative_movement_commands.)  
+  [Silence](silence.md#Silence)  
+  [Specification for programming](ping.md#Specification_for_programming)  
+  [specs](specs.md#specs)  
+  [The Euze](euze.md#The_Euze)  
+  [Todo](euze.md#Todo)  
+<!--pyndex_ender-->
 
-* all channels
-* say
-* whisper
-* pose
 
-## Implement Communication commands
-* Attitudes
-* Posture
-* Signals
-* Intimate conversation
-
-# Give the game some objectives 
-
-The objective should be to achieve intimacy
-with other players.
-
-# Determine the obstacles 
-
-What if anything prevents the players from instantly achieving intimacy
-
-## Create trade-offs
-
-* Tough choices 
-* What does a player have to sacrifice to achieve the objective?
-* Why is that a challenge?
-
-# Idea: Intimacy is a limited resource.
-Time is limited too. All bodies die at a certain time. 
-So you want to be as picky as possible about who you choose to be intimate
-with.
-
-# Matchmaking, fitness and Eunoia.
-Final score is based on achieving the best possible match. Finding the right
-partner.  Matchmaking score is subjective/objective
-
-# Attributes
-Playerbodies (player bots; bods; playerbod? hmmm) have attributes. Lets say
-three attributes (two randomly assigned, one chosen from a list... or three
-chosen from a draft... I don't know). Player bods have attributes. Bods also
-have preferences or orientation or... a list of attributes they are attracted
-to. 
-
-## Proposed definitions of orientation and preference
-* Orientation is the traits your body is naturally attracted to.
-* Preferences are traits that the player chooses to favour.
-
-## List of example traits or attributes
-buff, soft, dainty, robust, virile, warm, angular, hot, cool, vibrant, scintilating, strong, weak, frail, hearty, sharp, smooth, rough, chiselled, mighty, demure, coy, steadfast, sincere, complex, shy, gregarious, belligerent, effervescent, silky, mean, confident, kind, sly, generous, stern, aloof, ...
-
-I would like at least one hundred personal adjectives that describe body, character, personalilty...
-
-## Attraction mechanic
-Each player knows some of the traits they find specifically attractive. In fact
-they have a natural response to every possible trait (natural meaning hidden in their body's code but not necessarily known to the player). 
-
-## Aversion
-Aversions are traits that repell the player body. A player does not immediately
-know what traits they are averse to until they have encountered them. Spending
-time in proximity to otherbodies with averse traits may carry a penalty. Some other bodies might have traits a player is attracted to, and others they are averse to, what a dilemna!
-
-## Familiarity
-Familiarity is a measure of how well a body knows another body. Familiarity can be mutual or imbalanced. Familiarity is a factor in intimacy. I'm not sure yet what the other factor(s) might be. But in practicaly terms familiarity means knowing what the other body's traits are. It can also include knowing what their preferences are.
-
-# Itch bots 
-So at the lowest levels of intimacy bots could easily masquerade as
-players. They will try to attract players and waste their time.  Players can
-compete with each other and with the bots for attention, trying to get the best
-mates. Bots also 'poison the well' so to speak by reducing trust over all.
-Players have to act out sometimes to distinguish themselves from bots.
-
-# Compatibility 
-Compatibility traits include objective fitness scores as well as subjective
-complimentariness and also meta-game attributes like play styles, geo-region,
-timezone, language etc.
-
-# Distribution and testing 
-This game will certainly need some critical mass of
-players to actually find out if it works
-
-But it is a design goal to make it playable and fun with low participation
-rates. I think there are ways. For example build for asynchronous intimacy.
-Find ways for players to interact by leaving signals and messages for each other
-
-# Movement location and orientation
-In a game of purely relative movement one can only choose to move toward or away from another reference point.
-To start with the game has a single reference point called "home", "creche", "spawn" or something like that. 
-The second reference point is other bodies.  Beyond that I have no distinct plans yet. 
-
-Movement commands might be "approach <reference point>" or "quit <reference point>". (Maybe depart, avoid... hmmm).
-
-Another useful command might be one that allows you to maintain your proximity to a reference point even if it moves. 
-Maybe "orbit <reference point>".  This allows a body to stay close to a body they like. However there may be bodies 
-  one doesn't like. So there might be another command say "escape <reference point>". 
-  
-Then this will lead naturally to an amusing problem, what if a body you like likes a body you don't like. You orbit liked body but you try to escape
-disliked body.  This naturally suggests conflict, either internal where you make a tough choice to stay with liked body and put up with disliked. Or 
-and external conflict where you try to induce disliked to leave, or encourage liked to come away with you. 
-
-And of course there's the even simpler problem of unrequited attraction where you like a body who dislikes you.  This implies a contest to be resolved.
