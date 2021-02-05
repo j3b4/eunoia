@@ -69,3 +69,22 @@ class CmdOOB(Command):
     def func(self):
         caller = self.caller
 
+        if caller.db.char:
+            char = caller.db.char
+            self.msg(f"You have a character: #{char.id}")
+            # try to puppet it
+            try:
+                account.puppet_object(session, caller.db.char)
+                logger.log_sec(
+                        f"Puppet success: (Caller: {caller}, Character:{char}, "
+                        f"IP: {self.session.address}"
+                        )
+            except RuntimeError as exc:
+                self.msg("|rThat failed|n {msg}")
+                self.msg(exc)
+                logger.log_sec(
+                        f"Puppet failed: (Caller: {caller}, Character:{char}, "
+                        f"IP: {self.session.address}"
+                        )
+            return
+
