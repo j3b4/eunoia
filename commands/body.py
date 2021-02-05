@@ -68,6 +68,7 @@ class CmdOOB(Command):
 
     def func(self):
         caller = self.caller
+        account = self.account
 
         if caller.db.char:
             char = caller.db.char
