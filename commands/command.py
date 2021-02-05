@@ -83,6 +83,7 @@ class CmdIB(BaseCommand):
                                f" or puppet:id({caller.id})")
 
             caller.db.body = new_body
+            new_body.db.char = caller
 
             # return some sort of message
             caller.msg(f"Created new body: {key} for {caller.id} ")

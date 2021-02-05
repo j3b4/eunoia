@@ -4,6 +4,8 @@ Commands for Eunoia bodies.
 """
 
 from evennia import Command
+
+
 class CmdPing(Command):
     """
     Seek information about surrounding objects that are nearby*
@@ -47,4 +49,23 @@ class CmdPing(Command):
             location.msg_contents(lmessage)
             caller.msg(message)
             target.msg(tmessage)
+
+
+class CmdOOB(Command):
+    """
+    Go 'out of body' and return to your 'character' in Limbo and the lobby where you 
+    can chat and stuff.
+
+    Usage:
+      OOB
+
+      oob
+
+    Takes no arguments. Just leaves the Euze part of the game immediately. Your body
+    goes into safe storage while you're away.
+    """
+    key = "oob"
+
+    def func(self):
+        caller = self.caller
 
