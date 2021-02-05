@@ -1,7 +1,7 @@
 # commands/body_cmdsets.py
 
 from evennia import CmdSet
-from commands.body import CmdPing CmdOOB
+from commands.body import CmdPing, CmdOOB
 from evennia.commands.default import account, help
 
 
