@@ -1,8 +1,10 @@
-Eunoia Outline
+# Eunoia Outline
 : use an outline to organize immediate task
 [_] Next Activity:
-	[_] OOB (reverse or OOC)
+	[X] OOB (reverse or OOC)
 	[_] First batch of unit tests. 
+		: Unit test ib and oob to prove they can create a body, puppet it, and
+		: be moved to Euze and the go out of body returning to limbo.
 	[_] Ping command.
 	[_] Signal command
 Constraint for now
