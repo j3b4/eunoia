@@ -75,7 +75,7 @@ class CmdOOB(Command):
             self.msg(f"You have a character: #{char.id}")
             # try to puppet it
             try:
-                account.puppet_object(session, caller.db.char)
+                account.puppet_object(self.session, caller.db.char)
                 logger.log_sec(
                         f"Puppet success: (Caller: {caller}, Character:{char}, "
                         f"IP: {self.session.address}"
