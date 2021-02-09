@@ -4,6 +4,7 @@ Commands for Eunoia bodies.
 """
 
 from evennia import Command
+from evennia.utils import logger
 
 
 class CmdPing(Command):
@@ -22,7 +23,8 @@ class CmdPing(Command):
     to all bodies within range.
     """
     key = "ping"
-    # locks = "cmd:all()" 
+    # locks = "cmd:all()"
+
     def func(self):
         caller = self.caller
         location = caller.location
@@ -53,39 +55,43 @@ class CmdPing(Command):
 
 class CmdOOB(Command):
     """
-    Go 'out of body' and return to your 'character' in Limbo and the lobby where you 
-    can chat and stuff.
+    Go 'out of body' and return to your 'character' in Limbo and the lobby
+    where you can chat and stuff.
 
     Usage:
       OOB
 
       oob
 
-    Takes no arguments. Just leaves the Euze part of the game immediately. Your body
-    goes into safe storage while you're away.
+    Takes no arguments. Just leaves the Euze part of the game immediately.
+    Your body goes into safe storage while you're away.
     """
     key = "oob"
 
     def func(self):
         caller = self.caller
         account = self.account
+        character = self.account.character
 
-        if caller.db.char:
-            char = caller.db.char
-            self.msg(f"You have a character: #{char.id}")
+        if character:
+            # char = caller.db.char
+            self.msg(f"You have a character: #{character.id}")
             # try to puppet it
             try:
-                account.puppet_object(self.session, caller.db.char)
+                account.puppet_object(self.session, character)
                 logger.log_sec(
-                        f"Puppet success: (Caller: {caller}, Character:{char}, "
+                        f"Puppet success: (Caller: {caller}, "
+                        f"Character:{character}, "
                         f"IP: {self.session.address}"
                         )
             except RuntimeError as exc:
                 self.msg("|rThat failed|n {msg}")
                 self.msg(exc)
                 logger.log_sec(
-                        f"Puppet failed: (Caller: {caller}, Character:{char}, "
+                        f"Puppet failed: (Caller: {caller}, "
+                        f"Character:{character}, "
                         f"IP: {self.session.address}"
                         )
-            return
-
+        else:
+            self.msg("no character perhaps")
+        return

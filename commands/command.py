@@ -86,7 +86,7 @@ class CmdIB(BaseCommand):
             new_body.db.char = caller
 
             # return some sort of message
-            caller.msg(f"Created new body: {key} for {caller.id} ")
+            caller.msg(f"Created new body: {key} for {caller.id}")
             logger.log_sec(
                 f"Body created: {key} (Caller: {account},"
                 f"IP:{self.session.address}"
