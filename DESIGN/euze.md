@@ -24,15 +24,3 @@ limited commandsets
 arbitrary name or key
 traits
 look returns something arbitrary  - like only select traits and attitudes
-Hmmm
-
-# Todo
-
-* develop the euzebody typeclass.
-	no commands
-	add 'ping'
-	add some silly commands
-	work out the naming system
-
-* workout the create body and puppet it functions
-
