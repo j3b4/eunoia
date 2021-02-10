@@ -2,7 +2,7 @@
 
 # import unittest
 from evennia.commands.default.tests import CommandTest
-from evennia.utils.test_resources import EvenniaTest
+# from evennia.utils.test_resources import EvenniaTest
 from commands.command import CmdIB
 from commands.body import CmdOOB
 from typeclasses.euzebody import Body
@@ -17,21 +17,22 @@ class TestLookChar(CommandTest):
         """looks in ther room as the acharacter"""
         lookscene = "Char(#6)"
         self.call(general.CmdLook(), "me", lookscene)
-        extralook = general.CmdLook()
+        # extralook = general.CmdLook()
 
 
 class TestCmdIB(CommandTest):
     """Unittest of IB. Should create a body and go into it."""
-    # body_typeclass = Body
+    def setUp(self):
+        self.character_typeclass = Character
+        self.body_typeclass = Body
+        super(TestCmdIB, self).setUp()
 
     def test_simple(self):
-        CmdIB_results = self.call(CmdIB(), "")
-        self.assertRegex(CmdIB_results, "Created new body: Nebody for \d+\n"
-                                        "You have a body: #\d+")
-        # looks in ther room as the body
-        lookscene = "Char(#6)"
-        self.call(general.CmdLook(), "me", lookscene)
-        print("Looked at me as a body.")
+        Results = self.call(CmdIB(), "")
+        Expectation = ("Created new body: Nebody for \d+|"
+                       "You have a body: #\d+")
+        self.assertRegex(Results, Expectation)
+        # self.assertEqual(self.body.id, "8")
 
 
 class TestCmdOOB(CommandTest):
