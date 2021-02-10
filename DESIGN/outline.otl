@@ -6,10 +6,16 @@
 		: Unit test ib and oob to prove they can create a body, puppet it, and
 		: be moved to Euze and the go out of body returning to limbo.
 	[_] Ping command.
+		uniq temporary id for each other body in range
+		broadcasts yourbody's id to all other bodies in range
+		optionally broadcasts a status to all other bodies
 	[_] Signal command
+		sends a message to a target body
+		arguments include different signals
 Constraint for now
 	No space no movement. 
 		: This means that all the action takes place in one location all
 		: bodies are all accessible to each other. No need to travel or hunt.
 		: Even though I really want to ... maybe ping still works.
+		: There could be an even more abstracted set of positions 
 
