@@ -49,8 +49,7 @@ class CmdIB(BaseCommand):
 
     This command is available to your character in Limbo and adjacent rooms.
     If you already have a 'body' in the Euze then your puppet it immediately.
-    If you do not presently have a live body then you will be taken to a body
-    creation room or menu or something.
+    If you do not presently have a live body then one will be created for you.
     """
 
     key = "ib"
@@ -67,6 +66,9 @@ class CmdIB(BaseCommand):
             typeclass = Body
             start_location = ObjectDB.objects.get_id("#7")  # TODO: make this
             # more dynamic, or make it work at least
+            # This is likely causing me testing problems since testing doesn't
+            # have the Euze. How do I create that?
+            # Okay Griatch says to use tags.
             default_home = start_location
             permissions = "body"
             key = "Nebody"
@@ -81,12 +83,11 @@ class CmdIB(BaseCommand):
             # only creator can puppet
             new_body.locks.add(f"puppet:id({new_body.id}) or pid({account.id})"
                                f" or puppet:id({caller.id})")
-
+            new_body.tags.add(caller.account.key)  # this links the body to the
             caller.db.body = new_body
             new_body.db.char = caller
-
             # return some sort of message
-            caller.msg(f"Created new body: {key} for {caller.id}")
+            # caller.msg(f"Created new body: {key} for {caller.id}")
             logger.log_sec(
                 f"Body created: {key} (Caller: {account},"
                 f"IP:{self.session.address}"
@@ -94,7 +95,7 @@ class CmdIB(BaseCommand):
         # if you have a body, puppet it.
         if caller.db.body:
             body = caller.db.body
-            self.msg(f"You have a body: #{body.id}")
+            # self.msg(f"You have a body: #{body.id}")
             # try to puppet it
             try:
                 account.puppet_object(session, caller.db.body)
@@ -102,6 +103,7 @@ class CmdIB(BaseCommand):
                         f"Puppet success: (Caller: {caller}, Body:{body}, "
                         f"IP: {self.session.address}"
                         )
+                body.location.msg(f"Your {body} has arrived in {body.room}")
             except RuntimeError as exc:
                 self.msg("|rThat failed|n {msg}")
                 self.msg(exc)
@@ -109,6 +111,7 @@ class CmdIB(BaseCommand):
                         f"Puppet failed: (Caller: {caller}, Body:{body}, "
                         f"IP: {self.session.address}"
                         )
+            body.msg(f"you have entered your body {caller.key}")
             return
         # -------------------------------------------------------------
 #
