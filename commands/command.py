@@ -5,7 +5,7 @@ Commands
 Commands describe the input the account can do to the game.
 
 """
-
+import evennia
 from evennia import Command as BaseCommand
 # from evennia.commands.default import  account, general
 from evennia.utils import create, logger
@@ -55,7 +55,7 @@ class CmdIB(BaseCommand):
     key = "ib"
 
     def func(self):
-        from evennia.objects.models import ObjectDB
+        # from evennia.objects.models import ObjectDB
         from typeclasses.euzebody import Body
         caller = self.caller
         account = self.account
@@ -64,7 +64,9 @@ class CmdIB(BaseCommand):
         # if you do not have a body, create one
         if not caller.db.body:
             typeclass = Body
-            start_location = ObjectDB.objects.get_id("#7")  # TODO: make this
+            start_location = evennia.search_tag("euze")[0]
+            # crazy how does this identify a unique room?
+            # start_location = ObjectDB.objects.get_id("#7")  # TODO: make this
             # more dynamic, or make it work at least
             # This is likely causing me testing problems since testing doesn't
             # have the Euze. How do I create that?
@@ -100,10 +102,11 @@ class CmdIB(BaseCommand):
             try:
                 account.puppet_object(session, caller.db.body)
                 logger.log_sec(
-                        f"Puppet success: (Caller: {caller}, Body:{body}, "
+                        f"In Body success: (Caller: {caller}, Body:{body}"
+                        f"(#{body.id})\n"
                         f"IP: {self.session.address}"
                         )
-                body.location.msg(f"Your {body} has arrived in {body.room}")
+                # body.msg(f"Your {body} is in {body.location}")
             except RuntimeError as exc:
                 self.msg("|rThat failed|n {msg}")
                 self.msg(exc)
@@ -111,7 +114,7 @@ class CmdIB(BaseCommand):
                         f"Puppet failed: (Caller: {caller}, Body:{body}, "
                         f"IP: {self.session.address}"
                         )
-            body.msg(f"you have entered your body {caller.key}")
+            # body.msg(f"You have entered your body {body.id}")
             return
         # -------------------------------------------------------------
 #

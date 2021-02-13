@@ -31,10 +31,11 @@ class CmdPing(Command):
 
         if not self.args:
             # general ping of surrounding
-            message = "You try to ping but it doesn't tell you much yet."
-            lmessage = f"\"ping!\" ... coming from {caller}"
+            message = "you..."
+            # lmessage = f"\"ping!\" ... coming from {caller}"
             caller.msg(message)
-            location.msg_contents(lmessage)
+            location.msg_contents(text=("ping!", {'type': 'ping'}),
+                                  from_obj=caller)
             return
 
         target = caller.search(self.args.strip())
@@ -46,11 +47,13 @@ class CmdPing(Command):
 
         if target:
             message = f"You ping {target}."
-            tmessage = f"{caller} pings you."
             lmessage = f"\"ping!\" ... {caller} pings at {target}"
-            location.msg_contents(lmessage)
+            tmessage = f"{caller} pings you"
+            location.msg_contents(text=(lmessage, {'type': 'ping'}),
+                                  from_obj=caller)
             caller.msg(message)
-            target.msg(tmessage)
+            location.msg_contents(text=(tmessage, {'type': 'ping'}),
+                                  from_obj=caller)
 
 
 class CmdOOB(Command):
@@ -71,17 +74,17 @@ class CmdOOB(Command):
     def func(self):
         caller = self.caller
         account = self.account
-        character = self.account.character
+        # character = self.account.character
+        char = caller.db.char
 
-        if character:
-            # char = caller.db.char
-            self.msg(f"You have a character: #{character.id}")
+        if char:
+            # self.msg(f"You have a character: #{char.id}:{char.key}")
             # try to puppet it
             try:
-                account.puppet_object(self.session, character)
+                account.puppet_object(self.session, char)
                 logger.log_sec(
-                        f"Puppet success: (Caller: {caller}, "
-                        f"Character:{character}, "
+                        f"Out of body success: (Caller: {caller}\n"
+                        f"Character:{char.key}(#{char.id})\n"
                         f"IP: {self.session.address}"
                         )
             except RuntimeError as exc:
@@ -89,7 +92,7 @@ class CmdOOB(Command):
                 self.msg(exc)
                 logger.log_sec(
                         f"Puppet failed: (Caller: {caller}, "
-                        f"Character:{character}, "
+                        f"Character:{char}, "
                         f"IP: {self.session.address}"
                         )
         else:

@@ -14,6 +14,28 @@ does what you expect it to.
 
 """
 
+from evennia.utils import create, logger
+from django.conf import settings
+
+'''
+LIMBO_DESC = (
+        """
+        Welcome to Limbo. You can do anything you want in Limbo.
+        Welcome to Limbo. Anything is possible in Limbo! Limbo!
+        """
+        )
+'''
+
 
 def at_initial_setup():
-    pass
+    """ This is the final touches on Setup"""
+    logger.log_info("Eunoia initial setup: Euze and other objects ...")
+
+    room_typeclass = settings.BASE_ROOM_TYPECLASS
+    euze_obj = create.create_object(room_typeclass, "Euze", nohome=True)
+    # limbo_obj.id = 7
+    euze_obj.tags.add("Euze")
+    euze_obj.save()
+    euze_obj.db.desc = "This is the Euze"
+    euze_obj.save()
+    # pass

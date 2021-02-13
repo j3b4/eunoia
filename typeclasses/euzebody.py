@@ -52,3 +52,51 @@ class Body(Character):
         Just overloading this for now.
         """
         pass
+
+
+class Itchbot(Body):
+    """
+    Itch bots are inspired by fake multi players in itch.io games. They do
+    their best to impersonate other real player bodies.
+    """
+
+    def at_death(self):
+        pass
+
+    def at_pbody_present(self, pbody):
+        """
+        Try to interact with other bodies when players are online and
+        in the Euze.
+        """
+        # When a player is present then start a ticker to randomly ping
+        # other bodies and sometimes the world.
+        pass
+
+    def at_ping_receive(self, message):
+        """
+        If a direct ping received try to intereact with that body with
+        higher priority.
+        """
+        response = None
+        if message is not None:
+            response = 1
+        return response
+
+    def msg(self, text=None, from_obj=None, **kwargs):
+        """
+        Custom msg() listenning for pings.
+        TODO: Pings seems to lave a "from_obj" and so they are
+        giving us trouble.
+        """
+
+        if from_obj != self:
+            print(f"MSG:{text[0]} TYPE:{text[1]}  FROM: {from_obj}")
+            # we must ignore our own pings
+            # words = text[0]
+            # print(f"{self} heard {text[0]} < out of {from_obj}")
+            if 'ping' in text[0]:
+                # ping back
+                if from_obj is not None:
+                    print(f"I heard a from {from_obj}")
+                    self.execute_cmd(f"ping {from_obj}")
+        super().msg(text=text, from_obj=from_obj, **kwargs)

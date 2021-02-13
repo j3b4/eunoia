@@ -38,20 +38,17 @@ class TestAccount(CommandTest):
                  receiver=self.char1)
 
 
-class TestCmdIB(CommandTest):
-    """Unittest of IB. Should create a body and go into it."""
-    def test_simple(self):
-        Expectation = ("Created new body: Nebody for 6|"
-                       "You have a body: #8")
-        self.call(CmdIB(), "", Expectation, caller=self.account,
-                  )
+class TestCmdBody(CommandTest):
+    """
+    Unittest of IB. Should create a body and go into it.
+    Then come leave the body and come back out.
+    """
+    def test_IB(self):
+        self.call(
+                CmdIB(), "", "You become Nebody.",
+                caller=self.char1,
+                receiver=self.char1,
+                )
 
-
-class TestCmdOOB(CommandTest):
-    """Testing OOB which should return a player to their character"""
-    # character_typeclass = Character
-
-    def test_simple(self):
-        CmdOOB_results = self.call(CmdOOB(), "")
-        Expectation = ('You have a character: #6')
-        self.assertRegex(CmdOOB_results, Expectation)
+    def test_OOB(self):
+        self.call(CmdOOB(), "", "You become Char.")
