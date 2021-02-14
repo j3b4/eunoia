@@ -14,7 +14,7 @@
 		arguments include different signals
 	[_] Itchbots
 		[X] npc/mob objects that listen to pings
-		look like players
+		[_] should be indistinguishable from players
 		watches for players
 Constraint for now
 	No space no movement. 
