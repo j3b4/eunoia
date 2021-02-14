@@ -9,13 +9,16 @@
 		uniq temporary id for each other body in range
 		broadcasts yourbody's id to all other bodies in range
 		optionally broadcasts a status to all other bodies
+		work on ways to avoid multimatch when everyone has the name name
+			pinghandles perhaps.
 	[_] Signal command
 		sends a message to a target body
 		arguments include different signals
 	[_] Itchbots
 		[X] npc/mob objects that listen to pings
+			responds to pings appropriately
 		[_] should be indistinguishable from players
-		watches for players
+		[_] watches for players
 Constraint for now
 	No space no movement. 
 		: This means that all the action takes place in one location all
