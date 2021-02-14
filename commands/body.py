@@ -9,7 +9,8 @@ from evennia.utils import logger
 
 class CmdPing(Command):
     """
-    Seek information about surrounding objects that are nearby*
+    Seek information about surrounding objects that are nearby, and communicate
+    information about oneself.
 
     Usage:
       ping
@@ -18,9 +19,12 @@ class CmdPing(Command):
     Without arguments it returns a list of all other nearby objects.
 
     With argument it returns basic information about the target other body.
+
     Pinging also gives up information about the body pinging, it reveals
     location, the fact that the body is pinging, and potentially other details
-    to all bodies within range.
+    to all bodies in range.
+
+    TODO: revamp this based on say and whisper commands using hooks etc.
     """
     key = "ping"
     # locks = "cmd:all()"
@@ -29,31 +33,30 @@ class CmdPing(Command):
         caller = self.caller
         location = caller.location
 
-        if not self.args:
+        if self.args:
+            target = caller.search(self.args.strip(), location=caller.location)
+            if not target:
+                return
+            if target == caller:
+                caller.msg("You can't ping yourself")
+                return
+            else:
+                caller.msg(f"You pinged {target}")
+                lmessage = f"{caller}:Ping --> {target}"
+                # the idea below is that pings are always public but they
+                # could be targeted or at least aimed at a particular body.
+                # The target information is potentially public too.
+                location.msg_contents(text=(lmessage, {'type': 'ping',
+                                                       'target': target,
+                                                       'source': caller}),
+                                      from_obj=caller)
+
+        else:
             # general ping of surrounding
-            message = "you..."
-            # lmessage = f"\"ping!\" ... coming from {caller}"
-            caller.msg(message)
-            location.msg_contents(text=("ping!", {'type': 'ping'}),
-                                  from_obj=caller)
-            return
-
-        target = caller.search(self.args.strip())
-
-        if target == caller:
-            message = "You don't ping yourself"
-            caller.msg(message)
-            return
-
-        if target:
-            message = f"You ping {target}."
-            lmessage = f"\"ping!\" ... {caller} pings at {target}"
-            tmessage = f"{caller} pings you"
-            location.msg_contents(text=(lmessage, {'type': 'ping'}),
-                                  from_obj=caller)
-            caller.msg(message)
-            location.msg_contents(text=(tmessage, {'type': 'ping'}),
-                                  from_obj=caller)
+            location.msg_contents(
+                    text=(f"{caller}: Ping!", {'type': 'ping',
+                                               'source': caller}),
+                    from_obj=caller)
 
 
 class CmdOOB(Command):

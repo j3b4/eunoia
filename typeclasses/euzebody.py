@@ -53,6 +53,16 @@ class Body(Character):
         """
         pass
 
+    def at_ping_receive(self, message):
+        '''
+        Other bodies and bots can ping us. This has some effects on our body.
+        some of which are communicated to the player
+
+        TODO: revamp the ping command based on whisper and say with hooks
+        and all.
+        '''
+        pass
+
 
 class Itchbot(Body):
     """
@@ -72,6 +82,7 @@ class Itchbot(Body):
         # other bodies and sometimes the world.
         pass
 
+    '''
     def at_ping_receive(self, message):
         """
         If a direct ping received try to intereact with that body with
@@ -81,22 +92,38 @@ class Itchbot(Body):
         if message is not None:
             response = 1
         return response
+    '''
 
     def msg(self, text=None, from_obj=None, **kwargs):
         """
         Custom msg() listenning for pings.
-        TODO: Pings seems to lave a "from_obj" and so they are
-        giving us trouble.
+        TODO: refactor for receiving all kinds of messages.
         """
 
         if from_obj != self:
-            print(f"MSG:{text[0]} TYPE:{text[1]}  FROM: {from_obj}")
+            # print(f"MSG:{text[0]} TYPE:{text[1]}  FROM: {from_obj}")
+            print(f"Raw:{text}")
             # we must ignore our own pings
             # words = text[0]
             # print(f"{self} heard {text[0]} < out of {from_obj}")
-            if 'ping' in text[0]:
+            try:
+                (ping, is_ping,
+                 source, target) = (text[0],
+                                    text[1]['type'] == 'ping',
+                                    text[1]['source'],
+                                    text[1]['target'])
+            except Exception:
+                is_ping = False
+
+            if is_ping:
+                # check if itchbot was target of that ping
+                if target == self:
+                    print(f"{self} was the target {source}'s ping")
                 # ping back
-                if from_obj is not None:
-                    print(f"I heard a from {from_obj}")
-                    self.execute_cmd(f"ping {from_obj}")
+                if from_obj:
+                    print(f"I heard {ping} from {source}")
+                    self.execute_cmd(f"ping {source}")
+                else:
+                    self.execute_cmd("ping")
+
         super().msg(text=text, from_obj=from_obj, **kwargs)
