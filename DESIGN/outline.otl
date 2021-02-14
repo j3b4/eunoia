@@ -12,6 +12,10 @@
 	[_] Signal command
 		sends a message to a target body
 		arguments include different signals
+	[_] Itchbots
+		[X] npc/mob objects that listen to pings
+		look like players
+		watches for players
 Constraint for now
 	No space no movement. 
 		: This means that all the action takes place in one location all
