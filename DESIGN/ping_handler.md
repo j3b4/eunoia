@@ -15,6 +15,7 @@ The method simply returns PingHandler(self)  - PingHandler needs to have been
 imported.
 
 Write a handler module, somewhere, and in it define a PingHandler class.
+	
 	def __ini__(self, owner):
 		self.owner = owner
 
