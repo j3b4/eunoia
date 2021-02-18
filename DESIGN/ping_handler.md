@@ -22,3 +22,10 @@ Write a handler module, somewhere, and in it define a PingHandler class.
 	of the handler when handling a ping.
 
 
+# Thoughts
+So my thought is that if it were not for handlers all the ping responding 
+code would be in my different typeclasses. It could be customized. With the 
+handler, do all types that use the handler have to process the ping the
+same way?
+
+I'll have to see.
