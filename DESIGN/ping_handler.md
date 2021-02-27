@@ -1,7 +1,6 @@
 # Ping Handler
 This is a project to try to learn a bit about using "handlers" as per the 
-advice of Kovitikus (see outline.otl for a link).
-
+advice of Kovitikus: [Handlers](https://github.com/kovitikus/hecate/blob/master/docs/evennia/Handlers.md)
 
 # Purpose
 Honestly I'm not entirely sure but I feel intuitively that the handler system
@@ -15,11 +14,17 @@ The method simply returns PingHandler(self)  - PingHandler needs to have been
 imported.
 
 Write a handler module, somewhere, and in it define a PingHandler class.
+
+  class PingHandler:
 	def __ini__(self, owner):
 		self.owner = owner
 
 	and then add all the methods that would act on the body (owner)
 	of the handler when handling a ping.
+
+# Things to handle
+Well bodies do two things with ping. They ping and they get pinged. When they
+get pinged the respond automatically by ponging back. 
 
 
 # Thoughts
@@ -29,3 +34,6 @@ handler, do all types that use the handler have to process the ping the
 same way?
 
 I'll have to see.
+
+# Stop.
+Stop this project until I have a clear reason to use handlers. At this point, with this level of understanding it's really pre-mature optimization.
